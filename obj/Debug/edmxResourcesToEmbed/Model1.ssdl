@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Entitiy_ProjesiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Tbl_Kategoriler">
+    <Key>
+      <PropertyRef Name="Kategori_Id" />
+    </Key>
+    <Property Name="Kategori_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Kategori_Ad" Type="nvarchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="Tbl_Musteriler">
+    <Key>
+      <PropertyRef Name="Musteri_Id" />
+    </Key>
+    <Property Name="Musteri_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Musteri_Ad" Type="nvarchar" MaxLength="30" />
+    <Property Name="Musteri_Soyad" Type="nvarchar" MaxLength="30" />
+    <Property Name="Musteri_Sehir" Type="nvarchar" MaxLength="15" />
+    <Property Name="Musteri_Durum" Type="bit" />
+  </EntityType>
+  <EntityType Name="Tbl_Satıs">
+    <Key>
+      <PropertyRef Name="Satıs_Id" />
+    </Key>
+    <Property Name="Satıs_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Satıs_Fiyat" Type="decimal" Precision="9" Scale="2" />
+    <Property Name="Satıs_Urun" Type="int" />
+    <Property Name="Satıs_Musteri" Type="int" />
+    <Property Name="Satıs_Tarih" Type="smalldatetime" />
+  </EntityType>
+  <EntityType Name="Tbl_Urunler">
+    <Key>
+      <PropertyRef Name="Urun_Id" />
+    </Key>
+    <Property Name="Urun_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Urun_Ad" Type="nvarchar" MaxLength="30" />
+    <Property Name="Urun_Marka" Type="nvarchar" MaxLength="30" />
+    <Property Name="Urun_Fiyat" Type="decimal" Precision="9" Scale="2" />
+    <Property Name="Urun_Stok" Type="smallint" />
+    <Property Name="Urun_Durum" Type="bit" />
+    <Property Name="Urun_Kategori" Type="int" />
+  </EntityType>
+  <Association Name="FK_Tbl_Satıs_Tbl_Musteriler">
+    <End Role="Tbl_Musteriler" Type="Self.Tbl_Musteriler" Multiplicity="0..1" />
+    <End Role="Tbl_Satıs" Type="Self.Tbl_Satıs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Musteriler">
+        <PropertyRef Name="Musteri_Id" />
+      </Principal>
+      <Dependent Role="Tbl_Satıs">
+        <PropertyRef Name="Satıs_Musteri" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tbl_Satıs_Tbl_Urunler">
+    <End Role="Tbl_Urunler" Type="Self.Tbl_Urunler" Multiplicity="0..1" />
+    <End Role="Tbl_Satıs" Type="Self.Tbl_Satıs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Urunler">
+        <PropertyRef Name="Urun_Id" />
+      </Principal>
+      <Dependent Role="Tbl_Satıs">
+        <PropertyRef Name="Satıs_Urun" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tbl_Urunler_Tbl_Kategoriler">
+    <End Role="Tbl_Kategoriler" Type="Self.Tbl_Kategoriler" Multiplicity="0..1" />
+    <End Role="Tbl_Urunler" Type="Self.Tbl_Urunler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Kategoriler">
+        <PropertyRef Name="Kategori_Id" />
+      </Principal>
+      <Dependent Role="Tbl_Urunler">
+        <PropertyRef Name="Urun_Kategori" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="MarkaGetir" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="Entitiy_ProjesiModelStoreContainer">
+    <EntitySet Name="Tbl_Kategoriler" EntityType="Self.Tbl_Kategoriler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_Musteriler" EntityType="Self.Tbl_Musteriler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_Satıs" EntityType="Self.Tbl_Satıs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_Urunler" EntityType="Self.Tbl_Urunler" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Tbl_Satıs_Tbl_Musteriler" Association="Self.FK_Tbl_Satıs_Tbl_Musteriler">
+      <End Role="Tbl_Musteriler" EntitySet="Tbl_Musteriler" />
+      <End Role="Tbl_Satıs" EntitySet="Tbl_Satıs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tbl_Satıs_Tbl_Urunler" Association="Self.FK_Tbl_Satıs_Tbl_Urunler">
+      <End Role="Tbl_Urunler" EntitySet="Tbl_Urunler" />
+      <End Role="Tbl_Satıs" EntitySet="Tbl_Satıs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tbl_Urunler_Tbl_Kategoriler" Association="Self.FK_Tbl_Urunler_Tbl_Kategoriler">
+      <End Role="Tbl_Kategoriler" EntitySet="Tbl_Kategoriler" />
+      <End Role="Tbl_Urunler" EntitySet="Tbl_Urunler" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

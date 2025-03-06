@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Entitiy_ProjesiModelStoreContainer" CdmEntityContainer="Entitiy_ProjesiEntities">
+    <EntitySetMapping Name="Tbl_Kategoriler">
+      <EntityTypeMapping TypeName="Entitiy_ProjesiModel.Tbl_Kategoriler">
+        <MappingFragment StoreEntitySet="Tbl_Kategoriler">
+          <ScalarProperty Name="Kategori_Id" ColumnName="Kategori_Id" />
+          <ScalarProperty Name="Kategori_Ad" ColumnName="Kategori_Ad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_Musteriler">
+      <EntityTypeMapping TypeName="Entitiy_ProjesiModel.Tbl_Musteriler">
+        <MappingFragment StoreEntitySet="Tbl_Musteriler">
+          <ScalarProperty Name="Musteri_Durum" ColumnName="Musteri_Durum" />
+          <ScalarProperty Name="Musteri_Id" ColumnName="Musteri_Id" />
+          <ScalarProperty Name="Musteri_Ad" ColumnName="Musteri_Ad" />
+          <ScalarProperty Name="Musteri_Soyad" ColumnName="Musteri_Soyad" />
+          <ScalarProperty Name="Musteri_Sehir" ColumnName="Musteri_Sehir" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_Satıs">
+      <EntityTypeMapping TypeName="Entitiy_ProjesiModel.Tbl_Satıs">
+        <MappingFragment StoreEntitySet="Tbl_Satıs">
+          <ScalarProperty Name="Satıs_Id" ColumnName="Satıs_Id" />
+          <ScalarProperty Name="Satıs_Fiyat" ColumnName="Satıs_Fiyat" />
+          <ScalarProperty Name="Satıs_Urun" ColumnName="Satıs_Urun" />
+          <ScalarProperty Name="Satıs_Musteri" ColumnName="Satıs_Musteri" />
+          <ScalarProperty Name="Satıs_Tarih" ColumnName="Satıs_Tarih" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_Urunler">
+      <EntityTypeMapping TypeName="Entitiy_ProjesiModel.Tbl_Urunler">
+        <MappingFragment StoreEntitySet="Tbl_Urunler">
+          <ScalarProperty Name="Urun_Id" ColumnName="Urun_Id" />
+          <ScalarProperty Name="Urun_Ad" ColumnName="Urun_Ad" />
+          <ScalarProperty Name="Urun_Marka" ColumnName="Urun_Marka" />
+          <ScalarProperty Name="Urun_Fiyat" ColumnName="Urun_Fiyat" />
+          <ScalarProperty Name="Urun_Stok" ColumnName="Urun_Stok" />
+          <ScalarProperty Name="Urun_Durum" ColumnName="Urun_Durum" />
+          <ScalarProperty Name="Urun_Kategori" ColumnName="Urun_Kategori" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="MarkaGetir" FunctionName="Entitiy_ProjesiModel.Store.MarkaGetir" />
+  </EntityContainerMapping>
+</Mapping>
